@@ -1,0 +1,11 @@
+SELECT *,(
+CASE
+WHEN MONTH(date) IN (9,10,11) THEN 'Q1'
+WHEN MONTH(date) IN (12,1,2) THEN 'Q2'
+WHEN MONTH(date) IN (3,4,5) THEN 'Q2'
+ELSE 'Q4'
+
+END) as Quarter
+FROM fact_sales_monthly
+WHERE customer_code = 90002002 AND
+YEAR(DATE_ADD(date, INTERVAL 4 MONTH)) = 2021 ORDER BY DATE 
